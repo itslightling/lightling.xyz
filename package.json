@@ -1,0 +1,29 @@
+{
+  "name": "@lightling/lander",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "highlight.js": "^11.6.0",
+    "js-yaml": "^4.1.0",
+    "normalize.css": "^8.0.1",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.5",
+    "vue-tippy": "^6.0.0-alpha.65"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "path": "^0.12.7",
+    "pug": "^3.0.2",
+    "sass": "^1.55.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0",
+    "vue-tsc": "^0.40.4"
+  }
+}
