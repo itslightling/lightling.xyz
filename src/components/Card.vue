@@ -1,11 +1,19 @@
 <template lang='pug'>
 .card
   .content
-    h2 {{ card.title }}
-    p(
-      v-for='description in card.description',
-      v-html='description'
+    .text
+      h2 {{ card.title }}
+      p(
+        v-for='description in card.description',
+        v-html='description'
+      )
+    .social(
+      v-if='card.social'
     )
+      a(
+        v-for='social in card.social'
+        :href='social'
+      )
   .preview
     .image(
       :style=`{
@@ -27,8 +35,35 @@
   background-color: #000a
   backdrop-filter: blur(2rem)
   border-radius: 2rem
+  overflow: hidden
+  max-height: 100%
   .content
     flex: 1 1 auto
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 100%
+    overflow: hidden
+    .text
+      overflow-y: auto
+      height: calc(100% - 7rem)
+      h2
+        color: $brand-light-b
+        text-transform: capitalize
+      p
+        color: $brand-bright-a
+    .social
+      display: flex
+      grid-gap: 1rem
+      a
+        width: 4rem
+        height: 4rem
+        background-color: white
+        border-radius: 50%
+        text-decoration: none
+        display: inline-block
+        &::after
+          display: none
   .preview
     flex: 0 0 40%
     display: block

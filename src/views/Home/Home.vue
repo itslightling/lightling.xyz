@@ -14,6 +14,7 @@
       v-for='(card, index) in cards',
       :key='`link_${card.title}`',
       @click='() => onNavigate(index)',
+      @keyup.enter='() => onNavigate(index)',
     ) {{ card.title }}
   CardEmbed(
     v-if='cards.length > 0',
@@ -54,6 +55,8 @@
       box-sizing: border-box
       min-width: 5rem
       text-transform: uppercase
+      &:focus
+        outline: 0.25rem solid $brand-medium-a
   .card
     height: 50vh
     width: 70vw

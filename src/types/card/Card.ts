@@ -5,4 +5,5 @@ export interface Card {
   featuredImagePosition?: string
   title: string
   description: string[]
+  social?: string[]
 }
