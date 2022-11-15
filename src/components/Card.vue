@@ -8,7 +8,10 @@
     )
   .preview
     .image(
-      :style='{ backgroundImage: card.backgroundImage }',
+      :style=`{
+        backgroundImage: card.featuredImage,
+        backgroundPosition: card.featuredImagePosition,
+      }`,
     )
 </template>
 

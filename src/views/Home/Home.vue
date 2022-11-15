@@ -1,10 +1,23 @@
 <template lang='pug'>
 #main(
+  :style=`{
+    backgroundImage: cards.length > 0 ? cards[selected].backgroundImage : null,
+    backgroundPosition: cards.length > 0 ? cards[selected].backgroundImagePosition : null,
+  }`
 )
+  .nav
+    p(
+      v-if='cards === undefined'
+    ) Loading...
+    button(
+      v-else,
+      v-for='(card, index) in cards',
+      :key='`link_${card.title}`',
+      @click='() => onNavigate(index)',
+    ) {{ card.title }}
   CardEmbed(
-    v-for='card in cards'
-    :key='card.title'
-    :card='card'
+    v-if='cards.length > 0',
+    :card='cards[selected]',
   )
 </template>
 
@@ -18,14 +31,32 @@
   left: 0
   right: 0
   display: flex
+  grid-gap: 3rem
+  flex-direction: column
   background-color: black
   background-size: cover
   background-position: center center
   justify-content: center
   align-items: center
+  .nav
+    background-color: #000a
+    backdrop-filter: blur(2rem)
+    border-radius: 3rem
+    display: flex
+    grid-gap: 1rem
+    width: 70vw
+    padding: 0.5rem 3rem
+    button
+      font-size: 1.25rem
+      border-radius: 3rem
+      padding: 1rem
+      border: none
+      box-sizing: border-box
+      min-width: 5rem
+      text-transform: uppercase
   .card
-    height: 80vh
-    width: 80vw
+    height: 50vh
+    width: 70vw
 </style>
 
 <script lang='ts'>
@@ -41,17 +72,23 @@ export default defineComponent({
   },
   setup () {
     const cards = ref([] as Card[])
+    const selected = ref(0)
 
     return {
-      cards
+      cards,
+      selected
     }
   },
   mounted () {
     fetchAndParseContent('/content/info.yml')
     .then((cards) => {
       this.cards = cards as Card[]
-      console.log(this.cards)
     })
+  },
+  methods: {
+    onNavigate(index: number) {
+      this.selected = index
+    },
   },
 })
 </script>
