@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap')
+
+$brand-dark-a: #27404c
+$brand-dark-b: #351431
+$brand-dark-c: #8e4d45
+$brand-dark-d: #aa4465
+$brand-medium-a: #e68e84
+$brand-medium-b: #8980f5
+$brand-medium-c: #379ece
+$brand-light-a: #e8bbb0
+$brand-light-b: #93e1d8
+$brand-faint-a: #edd4ce
+$brand-bright-a: #ffe0e5
+
+$heading-family: 'Dosis', Calibri, sans-serif
+$body-family: 'Source Sans Pro', Arial, sans-serif
+
+$brand-anim-a: 0.3s cubic-bezier(0.065, 0.950, 0.500, 0.930)
+
+@mixin moz-scrollbar()
+  scrollbar-color: $brand-dark-a $brand-bright-a
+  scrollbar-width: auto
+
+@mixin webkit-scrollbar()
+  &::-webkit-scrollbar
+    background-color: $brand-dark-a
+    width: 1rem
+  &::-webkit-scrollbar-track
+    width: 0.75rem
+  &::-webkit-scrollbar-button
+    background-color: $brand-medium-a
+  &::-webkit-scrollbar-thumb
+    background-color: $brand-bright-a
+    border: 0.15rem solid $brand-dark-a
+    border-radius: 0.5rem
+
+@keyframes openScale
+  from
+    opacity: 0
+    transform: scale(1.5)
+  to
+    opacity: 1
+    transform: scale(1)
