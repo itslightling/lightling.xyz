@@ -4,8 +4,12 @@
     router-view
 </template>
 
-<style scoped lang='sass'>
-
+<style lang='sass' scoped>
+#entry
+  width: 100vw
+  height: 100vh
+  overflow: hidden
+  position: relative
 </style>
 
 <script lang='ts'>
