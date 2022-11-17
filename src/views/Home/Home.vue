@@ -1,8 +1,8 @@
 <template lang='pug'>
 #main(
   :style=`{
-    backgroundImage: cards.length > 0 ? cards[selected].backgroundImage : null,
-    backgroundPosition: cards.length > 0 ? cards[selected].backgroundImagePosition : null,
+    backgroundImage: cards.length > 0 ? cards[selected].wallpaper.src : null,
+    backgroundPosition: cards.length > 0 ? cards[selected].wallpaper.position : null,
   }`
 )
   .nav

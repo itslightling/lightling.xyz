@@ -1,10 +1,9 @@
+import { BackgroundImage } from './BackgroundImage'
 import { SocialLink } from './SocialLink'
 
 export interface Card {
-  backgroundImage?: string
-  backgroundImagePosition?: string
-  featuredImage?: string
-  featuredImagePosition?: string
+  wallpaper?: BackgroundImage
+  featured?: BackgroundImage
   title: string
   description: string[]
   social?: SocialLink[]

@@ -17,8 +17,8 @@
   .preview
     .image(
       :style=`{
-        backgroundImage: card.featuredImage,
-        backgroundPosition: card.featuredImagePosition,
+        backgroundImage: card.featured.src,
+        backgroundPosition: card.featured.position,
       }`,
     )
 </template>
