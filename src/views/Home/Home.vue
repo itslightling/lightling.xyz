@@ -1,10 +1,9 @@
 <template lang='pug'>
-#main(
-  :style=`{
-    backgroundImage: cards.length > 0 ? cards[selected].wallpaper.src : null,
-    backgroundPosition: cards.length > 0 ? cards[selected].wallpaper.position : null,
-  }`
+TransitionableImage(
+  ref='wallpaper',
+  class='page-wallpaper',
 )
+#main
   .nav
     p(
       v-if='cards === undefined'
@@ -25,6 +24,13 @@
 <style lang='sass' scoped>
 @import '@/styles/variables.sass'
 
+.page-wallpaper
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  display: block
 #main
   position: absolute
   top: 0
@@ -34,9 +40,6 @@
   display: flex
   grid-gap: 3rem
   flex-direction: column
-  background-color: black
-  background-size: cover
-  background-position: center center
   justify-content: center
   align-items: center
   .nav
@@ -63,15 +66,17 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, Ref, ref } from 'vue'
 
 import { Card } from '@/types/Card'
 import { fetchAndParseContent } from '@/utilities/fetcher'
 import CardEmbed from '@/components/Card.vue'
+import TransitionableImage from '@/components/TransitionableImage.vue'
 
 export default defineComponent({
   components: {
     CardEmbed,
+    TransitionableImage,
   },
   setup () {
     const cards = ref([] as Card[])
@@ -86,10 +91,12 @@ export default defineComponent({
     fetchAndParseContent('/content/info.yml')
     .then((cards) => {
       this.cards = cards as Card[]
+      (this.$refs.wallpaper as any).transition(this.cards[0].wallpaper)
     })
   },
   methods: {
     onNavigate(index: number) {
+      (this.$refs.wallpaper as any).transition(this.cards[index].wallpaper)
       this.selected = index
     },
   },

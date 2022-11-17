@@ -73,7 +73,7 @@
 import { defineComponent } from 'vue'
 
 import { Card } from '@/types/Card'
-import SocialButton from './SocialButton.vue';
+import SocialButton from './SocialButton.vue'
 
 export default defineComponent({
   props: {
