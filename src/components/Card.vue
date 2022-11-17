@@ -10,28 +10,10 @@
     .social(
       v-if='card.social',
     )
-      div(
+      SocialButton(
         v-for='social in card.social',
+        :social='social'
       )
-        a(
-          v-if='social.url',
-          :href='social.url',
-          :title='social.title',
-          :style=`{
-            backgroundImage: 'url(' + social.imageHref + ')',
-          }`,
-          target='_blank',
-        )
-        .no-link(
-          v-else-if='social.display',
-        )
-          div(
-            :title='social.title',
-            :style=`{
-              backgroundImage: 'url(' + social.imageHref + ')',
-            }`,
-          )
-          span {{ social.display }}
   .preview
     .image(
       :style=`{
@@ -74,36 +56,6 @@
       display: flex
       flex-wrap: wrap
       grid-gap: 1rem
-      a
-        width: 4rem
-        height: 4rem
-        background-color: white
-        background-size: cover
-        background-position: center center
-        border-radius: 50%
-        text-decoration: none
-        display: inline-block
-        &::after
-          display: none
-      .no-link
-        display: flex
-        justify-content: center
-        align-items: center
-        flex-direction: column
-        div
-          width: 4rem
-          height: 4rem
-          background-color: white
-          background-size: cover
-          background-position: center center
-          border-radius: 50%
-          text-decoration: none
-        span
-          text-align: center
-          background-color: transparentize($brand-dark-b, 0.25)
-          padding: 0.25rem
-          border-radius: 0.25rem
-          backdrop-filter: blur(2rem)
   .preview
     flex: 0 0 40%
     display: block
@@ -119,7 +71,9 @@
 
 <script lang='ts'>
 import { defineComponent } from 'vue'
+
 import { Card } from '@/types/Card'
+import SocialButton from './SocialButton.vue';
 
 export default defineComponent({
   props: {
@@ -128,5 +82,8 @@ export default defineComponent({
       required: true,
     }
   },
+  components: {
+    SocialButton,
+  }
 })
 </script>
