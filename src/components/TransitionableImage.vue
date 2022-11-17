@@ -6,13 +6,32 @@
       backgroundPosition: primaryImage?.position,
     }`,
   )
-  .swap
+  .swap(
+    v-if='swapImage !== undefined',
+  )
+    .swapA(
+      ref='swapA'
+      :style=`{
+        backgroundImage: primaryImage?.src,
+        backgroundPosition: primaryImage?.position,
+      }`,
+    )
+    .swapB(
+      ref='swapB'
+      :style=`{
+        backgroundImage: swapImage?.src,
+        backgroundPosition: swapImage?.position,
+      }`,
+    )
 </template>
 
 <style lang='sass' scoped>
 .container
   position: relative
   display: block
+  .swap,
+  .swapA,
+  .swapB,
   .primary
     position: absolute
     display: block
@@ -21,6 +40,18 @@
     right: 0
     bottom: 0
     background-size: cover
+
+.transitioning
+  .swapA
+    animation: fadeIn 1s linear 0s 1 reverse
+  .swapB
+    animation: fadeIn 1s linear 0s 1
+
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
 </style>
 
 <script lang='ts'>
@@ -31,7 +62,7 @@ import { BackgroundImage } from '@/types/BackgroundImage'
 export default defineComponent({
   setup () {
     const primaryImage = ref({} as BackgroundImage)
-    const swapImage = ref({} as BackgroundImage)
+    const swapImage = ref({} as BackgroundImage | undefined)
 
     return {
       primaryImage,
@@ -40,7 +71,17 @@ export default defineComponent({
   },
   methods: {
     transition(next: BackgroundImage) {
-      this.primaryImage = next
+      if (this.primaryImage === undefined) {
+        this.primaryImage = next
+      } else {
+        (this.$el as HTMLElement).classList.add('transitioning')
+        setTimeout(() => {
+          (this.$el as HTMLElement).classList.remove('transitioning')
+          this.swapImage = undefined
+          this.primaryImage = next
+        }, 1000)
+        this.swapImage = next
+      }
     },
   },
 })
