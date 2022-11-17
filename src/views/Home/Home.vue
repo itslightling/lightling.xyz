@@ -40,8 +40,8 @@
   justify-content: center
   align-items: center
   .nav
-    background-color: #000a
-    backdrop-filter: blur(2rem)
+    background-color: #0005
+    backdrop-filter: blur(1rem)
     border-radius: 3rem
     display: flex
     grid-gap: 1rem
@@ -65,7 +65,7 @@
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
 
-import { Card } from '@/types/card/Card'
+import { Card } from '@/types/Card'
 import { fetchAndParseContent } from '@/utilities/fetcher'
 import CardEmbed from '@/components/Card.vue'
 

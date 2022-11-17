@@ -5,15 +5,33 @@
       h2 {{ card.title }}
       p(
         v-for='description in card.description',
-        v-html='description'
+        v-html='description',
       )
     .social(
-      v-if='card.social'
+      v-if='card.social',
     )
-      a(
-        v-for='social in card.social'
-        :href='social'
+      div(
+        v-for='social in card.social',
       )
+        a(
+          v-if='social.url',
+          :href='social.url',
+          :title='social.title',
+          :style=`{
+            backgroundImage: 'url(' + social.imageHref + ')',
+          }`,
+          target='_blank',
+        )
+        .no-link(
+          v-else-if='social.display',
+        )
+          div(
+            :title='social.title',
+            :style=`{
+              backgroundImage: 'url(' + social.imageHref + ')',
+            }`,
+          )
+          span {{ social.display }}
   .preview
     .image(
       :style=`{
@@ -32,8 +50,8 @@
   display: flex
   justify-content: space-between
   align-items: flex-start
-  background-color: #000a
-  backdrop-filter: blur(2rem)
+  background-color: #0005
+  backdrop-filter: blur(1rem)
   border-radius: 2rem
   overflow: hidden
   max-height: 100%
@@ -54,16 +72,38 @@
         color: $brand-bright-a
     .social
       display: flex
+      flex-wrap: wrap
       grid-gap: 1rem
       a
         width: 4rem
         height: 4rem
         background-color: white
+        background-size: cover
+        background-position: center center
         border-radius: 50%
         text-decoration: none
         display: inline-block
         &::after
           display: none
+      .no-link
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        div
+          width: 4rem
+          height: 4rem
+          background-color: white
+          background-size: cover
+          background-position: center center
+          border-radius: 50%
+          text-decoration: none
+        span
+          text-align: center
+          background-color: transparentize($brand-dark-b, 0.25)
+          padding: 0.25rem
+          border-radius: 0.25rem
+          backdrop-filter: blur(2rem)
   .preview
     flex: 0 0 40%
     display: block
@@ -79,7 +119,7 @@
 
 <script lang='ts'>
 import { defineComponent } from 'vue'
-import { Card } from '@/types/card/Card'
+import { Card } from '@/types/Card'
 
 export default defineComponent({
   props: {

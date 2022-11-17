@@ -1,3 +1,5 @@
+import { SocialLink } from './SocialLink'
+
 export interface Card {
   backgroundImage?: string
   backgroundImagePosition?: string
@@ -5,5 +7,5 @@ export interface Card {
   featuredImagePosition?: string
   title: string
   description: string[]
-  social?: string[]
+  social?: SocialLink[]
 }
