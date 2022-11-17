@@ -61,24 +61,30 @@ import { BackgroundImage } from '@/types/BackgroundImage'
 
 export default defineComponent({
   setup () {
-    const primaryImage = ref({} as BackgroundImage)
+    const primaryImage = ref({} as BackgroundImage | undefined)
     const swapImage = ref({} as BackgroundImage | undefined)
+    const transitionRef = ref(null as number | null)
 
     return {
       primaryImage,
       swapImage,
+      transitionRef,
     }
   },
   methods: {
     transition(next: BackgroundImage) {
       if (this.primaryImage === undefined) {
         this.primaryImage = next
+      } else if (this.transitionRef !== null) {
+        this.swapImage = next
       } else {
         (this.$el as HTMLElement).classList.add('transitioning')
-        setTimeout(() => {
+        this.transitionRef = setTimeout(() => {
           (this.$el as HTMLElement).classList.remove('transitioning')
+          const finalImage = this.swapImage
           this.swapImage = undefined
-          this.primaryImage = next
+          this.primaryImage = finalImage
+          this.transitionRef = null
         }, 1000)
         this.swapImage = next
       }
