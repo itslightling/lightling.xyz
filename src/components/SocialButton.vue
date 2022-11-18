@@ -18,7 +18,9 @@
         backgroundImage: 'url(' + social.imageHref + ')',
       }`,
     )
-    span {{ social.display }}
+    span(
+      :title='social.display',
+    ) {{ social.display }}
 </template>
 
 <style lang='sass' scoped>
@@ -51,6 +53,9 @@
       text-decoration: none
     span
       text-align: center
+      max-width: 4rem
+      text-overflow: ellipsis
+      overflow: hidden
       background-color: transparentize($brand-dark-b, 0.25)
       padding: 0.25rem
       border-radius: 0.25rem

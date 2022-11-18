@@ -56,6 +56,9 @@
       display: flex
       flex-wrap: wrap
       grid-gap: 1rem
+      .social-button
+        flex: 0 0 4rem
+        width: 4rem
   .preview
     flex: 0 0 40%
     display: block
