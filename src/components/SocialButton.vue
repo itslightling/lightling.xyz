@@ -1,6 +1,10 @@
 <template lang='pug'>
-.social-button
-  a(
+.social-button(
+  :class=`{
+    'no-link': social.display !== undefined,
+  }`,
+)
+  a.link(
     v-if='social.url',
     :href='social.url',
     :title='social.title',
@@ -9,27 +13,22 @@
     }`,
     target='_blank',
   )
-  .no-link(
+  .link(
     v-else-if='social.display',
+    :title='`${social.title} : ${social.display}`',
+    :style=`{
+      backgroundImage: 'url(' + social.imageHref + ')',
+    }`,
   )
-    div(
-      :title='social.title',
-      :style=`{
-        backgroundImage: 'url(' + social.imageHref + ')',
-      }`,
-    )
-    span(
-      :title='social.display',
-    ) {{ social.display }}
 </template>
 
 <style lang='sass' scoped>
 @import '@/styles/variables.sass'
 
 .social-button
-  a
-    width: 4rem
-    height: 4rem
+  .link
+    width: 100%
+    padding-top: 100%
     background-color: white
     background-size: cover
     background-position: center center
@@ -38,28 +37,6 @@
     display: inline-block
     &::after
       display: none
-  .no-link
-    display: flex
-    justify-content: center
-    align-items: center
-    flex-direction: column
-    div
-      width: 4rem
-      height: 4rem
-      background-color: white
-      background-size: cover
-      background-position: center center
-      border-radius: 50%
-      text-decoration: none
-    span
-      text-align: center
-      max-width: 4rem
-      text-overflow: ellipsis
-      overflow: hidden
-      background-color: transparentize($brand-dark-b, 0.25)
-      padding: 0.25rem
-      border-radius: 0.25rem
-      backdrop-filter: blur(2rem)
 </style>
 
 <script lang='ts'>
