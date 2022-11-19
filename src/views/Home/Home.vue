@@ -56,6 +56,7 @@ TransitionableImage(
     button
       font-size: 1.25rem
       border-radius: 3rem
+      flex: 0 0 auto
       padding: 1rem
       color: $brand-dark-b
       border: 0.25rem solid transparent
@@ -80,6 +81,18 @@ TransitionableImage(
   .card
     height: 50vh
     width: 70vw
+
+@media screen and (max-width: 1023px)
+  #main
+    .nav
+      grid-gap: 0.25rem
+      padding: 0.25rem 1rem
+      width: calc(95vw - 2rem)
+      justify-content: space-between
+      button
+        padding: 0.25rem 0.5rem
+    .card
+      width: calc(95vw - 2rem)
 </style>
 
 <script lang='ts'>

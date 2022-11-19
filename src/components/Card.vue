@@ -57,8 +57,7 @@
       flex-wrap: wrap
       grid-gap: 1rem
       .social-button
-        flex: 0 0 4rem
-        width: 4rem
+        flex: 0 0 8vmin
   .preview
     flex: 0 0 40%
     display: block
@@ -70,6 +69,14 @@
       height: 100%
       background-size: cover
       background-position: center center
+
+@media screen and (max-width: 1023px)
+  .card
+    padding: 1rem
+    grid-gap: 0.5rem
+    .content
+      .social
+        grid-gap: 0.25rem
 </style>
 
 <script lang='ts'>
