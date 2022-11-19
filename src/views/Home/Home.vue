@@ -12,6 +12,9 @@ TransitionableImage(
       v-else,
       v-for='(card, index) in cards',
       :key='`link_${card.title}`',
+      :class=`{
+        selected: index === selected,
+      }`,
       @click='() => onNavigate(index)',
       @keyup.enter='() => onNavigate(index)',
     ) {{ card.title }}
@@ -54,12 +57,26 @@ TransitionableImage(
       font-size: 1.25rem
       border-radius: 3rem
       padding: 1rem
-      border: none
+      color: $brand-dark-b
+      border: 0.25rem solid transparent
+      outline: 0.25rem solid transparent
       box-sizing: border-box
       min-width: 5rem
       text-transform: uppercase
+      background-color: $brand-bright-a
+      transition: all 0.25s ease-out
+      box-shadow: 0 0.15rem 0.15rem $brand-dark-b
+      position: relative
       &:focus
-        outline: 0.25rem solid $brand-medium-a
+        outline-color: $brand-medium-a
+      &:hover
+        background-color: $brand-medium-a
+      &:active
+        background-color: $brand-medium-c
+      &.selected
+        border-color: $brand-dark-d
+        background-color: $brand-dark-d
+        color: $brand-bright-a
   .card
     height: 50vh
     width: 70vw
