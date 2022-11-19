@@ -20,6 +20,7 @@ TransitionableImage(
     ) {{ card.title }}
   CardEmbed(
     v-if='cards.length > 0',
+    ref='cardEmbed',
     :card='cards[selected]',
   )
 </template>
@@ -54,6 +55,7 @@ TransitionableImage(
     width: 70vw
     padding: 0.5rem 3rem
     button
+      cursor: pointer
       font-size: 1.25rem
       border-radius: 3rem
       flex: 0 0 auto
@@ -145,8 +147,9 @@ export default defineComponent({
   },
   methods: {
     onNavigate(index: number) {
-      (this.$refs.wallpaper as any).transition(this.cards[index].wallpaper)
-      this.selected = index
+      (this.$refs.wallpaper as any).transition(this.cards[index].wallpaper);
+      (this.$refs.cardEmbed as any).swap();
+      this.selected = index;
     },
   },
 })

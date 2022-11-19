@@ -1,7 +1,9 @@
 <template lang='pug'>
 .card
   .content
-    .text
+    .text(
+      ref='textContainer',
+    )
       h2 {{ card.title }}
       p(
         v-for='description in card.description',
@@ -43,10 +45,24 @@
     flex-direction: column
     justify-content: space-between
     height: 100%
-    grid-gap: 3rem
+    grid-gap: 1rem
     overflow: hidden
     .text
       overflow-y: auto
+      position: relative
+      &.scroller:before
+        content: 'Scroll For More'
+        position: absolute
+        top: 0.25rem
+        right: 0.25rem
+        width: auto
+        height: auto
+        font-size: 1rem
+        padding: 0.5rem
+        border-radius: 0.5rem
+        color: $brand-dark-b
+        background-color: $brand-bright-a
+        opacity: 0.5
       h2
         color: $brand-light-b
         text-transform: capitalize
@@ -90,6 +106,11 @@
         background-color: #0005
         border-radius: 0.5rem
         padding: 0.5rem
+      .text:before
+        font-size: 1.75rem
+        padding: 0.25rem
+        top: 0.5rem
+        right: 0.5rem
     .preview
       width: 100%
       flex: 0 0 30vmax
@@ -114,6 +135,19 @@ export default defineComponent({
   },
   components: {
     SocialButton,
-  }
+  },
+  methods: {
+    swap () {
+      requestAnimationFrame(() => {
+        const textContainer = this.$refs.textContainer as any
+        console.log(`${textContainer.scrollHeight} ${textContainer.clientHeight}`)
+        if (textContainer.scrollHeight > textContainer.clientHeight) {
+          textContainer.classList.add('scroller')
+        } else {
+          textContainer.classList.remove('scroller')
+        }
+      })
+    },
+  },
 })
 </script>
