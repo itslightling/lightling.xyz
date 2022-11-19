@@ -93,10 +93,29 @@ TransitionableImage(
         padding: 0.25rem 0.5rem
     .card
       width: calc(95vw - 2rem)
+
+@media screen and (max-width: 640px)
+  #main
+    display: grid
+    grid-template-rows: min-content
+    grid-gap: 0.5rem
+    .nav
+      align-self: flex-start
+      flex-wrap: wrap
+      justify-content: center
+      border-radius: 0.5rem
+      width: calc(100vw - 3rem)
+      margin-top: 0.5rem
+    .card
+      width: calc(100vw - 3rem)
+      height: unset
+      border-radius: 0.5rem
+      align-self: stretch
+      margin-bottom: 0.5rem
 </style>
 
 <script lang='ts'>
-import { defineComponent, Ref, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 import { Card } from '@/types/Card'
 import { fetchAndParseContent } from '@/utilities/fetcher'
