@@ -140,7 +140,6 @@ export default defineComponent({
     swap () {
       requestAnimationFrame(() => {
         const textContainer = this.$refs.textContainer as any
-        console.log(`${textContainer.scrollHeight} ${textContainer.clientHeight}`)
         if (textContainer.scrollHeight > textContainer.clientHeight) {
           textContainer.classList.add('scroller')
         } else {
