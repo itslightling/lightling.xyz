@@ -43,10 +43,10 @@
     flex-direction: column
     justify-content: space-between
     height: 100%
+    grid-gap: 3rem
     overflow: hidden
     .text
       overflow-y: auto
-      height: calc(100% - 7rem)
       h2
         color: $brand-light-b
         text-transform: capitalize
@@ -57,7 +57,7 @@
       flex-wrap: wrap
       grid-gap: 1rem
       .social-button
-        flex: 0 0 8vmin
+        flex: 0 0 10vmin
   .preview
     flex: 0 0 40%
     display: block
@@ -69,6 +69,7 @@
       height: 100%
       background-size: cover
       background-position: center center
+      background-repeat: no-repeat
 
 @media screen and (max-width: 1023px)
   .card
@@ -77,6 +78,25 @@
     .content
       .social
         grid-gap: 0.25rem
+
+@media screen and (max-width: 640px)
+  .card
+    flex-direction: column-reverse
+    align-items: stretch
+    .content
+      grid-gap: 1rem
+      .text,
+      .social
+        background-color: #0005
+        border-radius: 0.5rem
+        padding: 0.5rem
+    .preview
+      width: 100%
+      flex: 0 0 30vmax
+      .image
+        border-radius: 0.5rem
+        background-size: contain
+        background-color: #0005
 </style>
 
 <script lang='ts'>
