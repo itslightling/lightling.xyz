@@ -42,7 +42,7 @@ TransitionableImage(
   left: 0
   right: 0
   display: flex
-  grid-gap: 3rem
+  grid-gap: 2rem
   flex-direction: column
   justify-content: center
   align-items: center
@@ -53,7 +53,7 @@ TransitionableImage(
     display: flex
     grid-gap: 1rem
     width: 70vw
-    padding: 0.5rem 3rem
+    padding: 0.5rem 2rem
     button
       cursor: pointer
       font-size: 1.25rem
@@ -70,16 +70,16 @@ TransitionableImage(
       transition: all 0.25s ease-out
       box-shadow: 0 0.15rem 0.15rem $brand-dark-b
       position: relative
+      &.selected
+        border-color: $brand-dark-d
+        background-color: $brand-dark-d
+        color: $brand-bright-a
       &:focus
         outline-color: $brand-medium-a
       &:hover
         background-color: $brand-medium-a
       &:active
         background-color: $brand-medium-c
-      &.selected
-        border-color: $brand-dark-d
-        background-color: $brand-dark-d
-        color: $brand-bright-a
   .card
     height: 50vh
     width: 70vw

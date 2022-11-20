@@ -29,13 +29,13 @@
 @import '@/styles/variables.sass'
 
 .card
-  padding: 3rem
-  grid-gap: 3rem
+  padding: 2rem
+  grid-gap: 2rem
   display: flex
   justify-content: space-between
   align-items: flex-start
   background-color: #0005
-  backdrop-filter: blur(1rem)
+  backdrop-filter: blur(0.2rem)
   border-radius: 2rem
   overflow: hidden
   max-height: 100%
@@ -47,6 +47,11 @@
     height: 100%
     grid-gap: 1rem
     overflow: hidden
+    .text,
+    .social
+      background-color: #0005
+      border-radius: 0.5rem
+      padding: 0.5rem
     .text
       overflow-y: auto
       position: relative
@@ -68,6 +73,7 @@
         text-transform: capitalize
       p
         color: $brand-bright-a
+        text-shadow: 0.1rem 0.1rem 0.1rem $brand-dark-b
     .social
       display: flex
       flex-wrap: wrap
@@ -101,11 +107,6 @@
     align-items: stretch
     .content
       grid-gap: 1rem
-      .text,
-      .social
-        background-color: #0005
-        border-radius: 0.5rem
-        padding: 0.5rem
       .text:before
         font-size: 1.75rem
         padding: 0.25rem
