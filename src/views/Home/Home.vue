@@ -14,9 +14,10 @@
   overflow-y: scroll
   height: 100vh
   .card
-    margin: auto
     height: 50vh
-    width: 70vw
+    width: 40rem
+    &:nth-last-child(1)
+      margin-bottom: 25vmin
 
 @media screen and (max-width: 1023px)
   #main

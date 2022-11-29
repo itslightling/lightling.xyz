@@ -1,5 +1,10 @@
 <template lang='pug'>
-.card
+.card(
+  :style=`{
+    backgroundImage: card.wallpaper.src,
+    backgroundPosition: card.wallpaper.position,
+  }`,
+)
   .content
     .text(
       ref='textContainer',
@@ -29,18 +34,17 @@
 @import '@/styles/variables.sass'
 
 .card
+  position: relative
   padding: 2rem
   grid-gap: 2rem
-  display: flex
-  justify-content: space-between
-  align-items: flex-start
   background-color: #0005
+  background-attachment: fixed
+  background-size: cover
   backdrop-filter: blur(0.2rem)
   border-radius: 2rem
-  overflow: hidden
   max-height: 100%
+  margin: 25vmin auto 0
   .content
-    flex: 1 1 auto
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -81,9 +85,15 @@
       .social-button
         flex: 0 0 10vmin
   .preview
-    flex: 0 0 40%
+    position: absolute
     display: block
-    height: 100%
+    margin-left: auto
+    margin-right: auto
+    left: 0
+    right: 0
+    width: 25vmin
+    top: -12.5vmin
+    height: 25vmin
     .image
       border-radius: 2rem
       display: block
@@ -117,8 +127,6 @@
       flex: 0 0 30vmax
       .image
         border-radius: 0.5rem
-        background-size: contain
-        background-color: #0005
 </style>
 
 <script lang='ts'>
