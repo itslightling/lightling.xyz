@@ -14,7 +14,6 @@
   overflow-y: scroll
   height: 100vh
   .card
-    height: 50vh
     width: 40rem
     &:nth-last-child(1)
       margin-bottom: 25vmin

@@ -40,44 +40,32 @@
   background-color: #0005
   background-attachment: fixed
   background-size: cover
-  backdrop-filter: blur(0.2rem)
   border-radius: 2rem
-  max-height: 100%
   margin: 25vmin auto 0
+  box-shadow: 0 0.25rem 1rem 0 #0009
   .content
     display: flex
     flex-direction: column
     justify-content: space-between
-    height: 100%
     grid-gap: 1rem
     overflow: hidden
     .text,
     .social
-      background-color: #0005
-      border-radius: 0.5rem
-      padding: 0.5rem
+      background-color: #0009
+      backdrop-filter: blur(0.5rem)
+      border-radius: 1rem
+      padding: 1rem
     .text
-      overflow-y: auto
       position: relative
-      &.scroller:before
-        content: 'Scroll For More'
-        position: absolute
-        top: 0.25rem
-        right: 0.25rem
-        width: auto
-        height: auto
-        font-size: 1rem
-        padding: 0.5rem
-        border-radius: 0.5rem
-        color: $brand-dark-b
-        background-color: $brand-bright-a
-        opacity: 0.5
       h2
         color: $brand-light-b
         text-transform: capitalize
       p
         color: $brand-bright-a
-        text-shadow: 0.1rem 0.1rem 0.1rem $brand-dark-b
+        text-shadow: 0.05rem 0.05rem 0.05rem $brand-dark-b
+        font-size: 1.2rem
+        &:nth-last-child(1)
+          margin-bottom: 0
     .social
       display: flex
       flex-wrap: wrap
@@ -102,6 +90,9 @@
       background-size: cover
       background-position: center center
       background-repeat: no-repeat
+      background-color: #0009
+      backdrop-filter: blur(0.5rem)
+      box-shadow: 0 0.25rem 0.25rem 0 #0009
 
 @media screen and (max-width: 1023px)
   .card
@@ -113,20 +104,15 @@
 
 @media screen and (max-width: 640px)
   .card
-    flex-direction: column-reverse
-    align-items: stretch
     .content
-      grid-gap: 1rem
-      .text:before
-        font-size: 1.75rem
-        padding: 0.25rem
-        top: 0.5rem
-        right: 0.5rem
-    .preview
-      width: 100%
-      flex: 0 0 30vmax
-      .image
-        border-radius: 0.5rem
+      .text
+        padding-top: 12.5vmin
+        h2
+          text-align: center
+      .social
+
+        .social-button
+          flex: 0 0 15vmin
 </style>
 
 <script lang='ts'>
