@@ -110,7 +110,6 @@
         h2
           text-align: center
       .social
-
         .social-button
           flex: 0 0 15vmin
 </style>
