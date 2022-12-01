@@ -1,8 +1,11 @@
 <template lang='pug'>
 #main
+  ScrollAwarePageNav(
+    :sections='nav',
+  )
   CardEmbed(
-    v-for='(card, i) in cards'
-    :key='`card_${i}`'
+    v-for='(card, i) in cards',
+    :key='`card_${i}`',
     :card='card',
   )
 </template>
@@ -42,22 +45,27 @@ import { defineComponent, ref } from 'vue'
 import { Card } from '@/types/Card'
 import { fetchAndParseContent } from '@/utilities/fetcher'
 import CardEmbed from '@/components/Card.vue'
+import ScrollAwarePageNav from '@/components/ScrollAwarePageNav.vue'
 
 export default defineComponent({
   components: {
     CardEmbed,
+    ScrollAwarePageNav,
   },
   setup () {
     const cards = ref([] as Card[])
+    const nav = ref([] as string[])
 
     return {
       cards,
+      nav,
     }
   },
   mounted () {
     fetchAndParseContent('/content/info.yml')
     .then((cards) => {
       this.cards = cards as Card[]
+      this.nav = (cards as Card[]).map((card) => card.title)
     })
   },
 })

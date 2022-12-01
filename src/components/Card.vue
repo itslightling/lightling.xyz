@@ -4,6 +4,7 @@
     backgroundImage: card.wallpaper.src,
     backgroundPosition: card.wallpaper.position,
   }`,
+  :id='card.title',
 )
   .content
     .text(
