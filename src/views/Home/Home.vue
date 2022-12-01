@@ -2,6 +2,8 @@
 #main
   ScrollAwarePageNav(
     :sections='nav',
+    selector='.card',
+    scrollSelectorPath=' .image',
   )
   CardEmbed(
     v-for='(card, i) in cards',
@@ -16,6 +18,12 @@
 #main
   overflow-y: scroll
   height: 100vh
+  .page-navigator
+    width: 2rem
+    position: absolute
+    top: 25vh
+    bottom: 25vh
+    left: 4vmax
   .card
     width: 40rem
     &:nth-last-child(1)
