@@ -25,6 +25,7 @@
     bottom: 25vh
     left: 4vmax
   .card
+    margin: 25vmin auto 0
     width: 40rem
     &:nth-last-child(1)
       margin-bottom: 25vmin
@@ -32,14 +33,26 @@
 @media screen and (max-width: 1023px)
   #main
     .card
-      width: calc(95vw - 2rem)
+      margin-left: auto
+      margin-right: 0
+      width: 75vmax
+
+@media screen and (max-width: 860px)
+  #main
+    .page-navigator
+      left: 0.5vmax
+      width: 1rem
+      font-size: 0.8rem
 
 @media screen and (max-width: 640px)
   #main
     display: grid
     grid-template-rows: min-content
     grid-gap: 0.5rem
+    .page-navigator
+      display: none
     .card
+      margin-right: auto
       width: calc(100vw - 3rem)
       height: unset
       border-radius: 0.5rem

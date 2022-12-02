@@ -8,6 +8,7 @@
     :key='`nav_${section}`',
     @click='() => onNavigate(section)',
     @keyup.enter='() => onNavigate(section)',
+    tabindex='0'
   )
     .circle
     span {{ section }}
@@ -21,10 +22,10 @@
   flex-direction: column
   justify-content: space-between
   .line
-    background-color: white
+    background-color: desaturate(darken($brand-light-a, 10%), 20%)
     position: absolute
-    top: 0
-    bottom: 0
+    top: 5%
+    bottom: 5%
     left: 40%
     right: 40%
   .button
@@ -34,16 +35,21 @@
     transform: scale(1)
     transition: transform 0.25s cubic-bezier(0,1,.74,1)
     cursor: pointer
+    &:focus
+      outline: none
+      .circle
+        outline: 0.25rem solid $brand-medium-a
     .circle
-      width: 2rem
-      height: 2rem
-      flex: 0 0 2rem
+      width: 100%
+      padding-top: 100%
+      flex: 0 0 100%
       border-radius: 50%
-      background-color: white
+      background-color: $brand-light-a
       display: inline-block
       margin-right: 0.5rem
     span
       white-space: nowrap
+      text-transform: capitalize
 </style>
 
 <script lang='ts'>
@@ -96,7 +102,7 @@ export default defineComponent({
         }))
         .map((element) => ({
           ratio: Math.abs(
-              (element.scrollAnchor as HTMLElement).getBoundingClientRect().top -
+              (element.scrollAnchor as HTMLElement).getBoundingClientRect().top +
               ((element.scrollAnchor as HTMLElement).getBoundingClientRect().height / 2)
             ) / minDistance,
           id: element.anchor.id,

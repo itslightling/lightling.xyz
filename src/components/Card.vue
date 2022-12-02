@@ -42,7 +42,6 @@
   background-attachment: fixed
   background-size: cover
   border-radius: 2rem
-  margin: 25vmin auto 0
   box-shadow: 0 0.25rem 1rem 0 #0009
   .content
     display: flex
