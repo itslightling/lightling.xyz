@@ -34,8 +34,6 @@
     transform: scale(1)
     transition: transform 0.25s cubic-bezier(0,1,.74,1)
     cursor: pointer
-    &.current
-      transform: scale(2)
     .circle
       width: 2rem
       height: 2rem
@@ -50,6 +48,7 @@
 
 <script lang='ts'>
 import { defineComponent, ref, Ref } from 'vue'
+import { clamp } from '@/utilities/number'
 
 export default defineComponent({
   props: {
@@ -67,47 +66,47 @@ export default defineComponent({
     }
   },
   setup () {
-    const observer: Ref<IntersectionObserver | undefined> = ref(undefined)
-    const observerOptions: IntersectionObserverInit = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.25,
-    }
     const links: Ref<Map<string, HTMLElement> | undefined> = ref(undefined)
       
     return {
       links,
-      observer,
-      observerOptions,
     }
+  },
+  mounted () {
+    (this.$refs.container as HTMLElement).parentElement?.addEventListener('scroll', this.onScroll)
   },
   updated () {
     if (this.links === undefined) {
       this.links = new Map()
       ;(this.$refs.container as HTMLElement).querySelectorAll('span').forEach((element) => {
-        this.links?.set(element.innerHTML, element.parentElement as HTMLElement)
+        this.links?.set(element.innerHTML.replaceAll(' ', '-'), element.parentElement as HTMLElement)
       })
     }
-    if (this.observer === undefined) {
-      this.observer = new IntersectionObserver(this.sectionCallback, this.observerOptions)
-    }
-    this.observer.disconnect()
-    document.querySelectorAll(this.selector).forEach((card) => this.observer?.observe(card))
   },
   methods: {
-    sectionCallback(entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
-      let intersectingEntry = entries.find((entry) => entry.isIntersecting)
-      if (!!intersectingEntry){
-        this.links?.forEach((element, key) => {
-          if (intersectingEntry?.target.id === key) {
-            element.classList.add('current')
-          } else {
-            element.classList.remove('current')
-          }
-        })
-      }
+    onScroll () {
+      const links = this.links as Map<string, HTMLElement>
+      const parent = (this.$refs.container as HTMLElement).parentElement as HTMLElement
+      const minDistance = Math.round(parent.scrollHeight / (links.size))
+      const sectionRatios = Array
+        .from(document.querySelectorAll(`${this.selector}`))
+        .map((element) => ({
+          anchor: element,
+          scrollAnchor: element.querySelector(`${this.scrollSelectorPath}`),
+        }))
+        .map((element) => ({
+          ratio: Math.abs(
+              (element.scrollAnchor as HTMLElement).getBoundingClientRect().top -
+              ((element.scrollAnchor as HTMLElement).getBoundingClientRect().height / 2)
+            ) / minDistance,
+          id: element.anchor.id,
+        }))
+      links.forEach((element, key) => {
+        const section = sectionRatios.find((other) => other.id === key) as { ratio: number }
+        element.style.transform = `scale(${clamp(1.5 - (section.ratio * 0.8), 1, 3)})`
+      })
     },
-    onNavigate(id: string) {
+    onNavigate (id: string) {
       const route = `#${id.replaceAll(' ', '-')}`
       this.$router.push(route)
       document.querySelector(`${route}${this.scrollSelectorPath}`)?.scrollIntoView({ behavior: 'smooth' })
