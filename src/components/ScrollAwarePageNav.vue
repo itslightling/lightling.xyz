@@ -87,6 +87,7 @@ export default defineComponent({
       ;(this.$refs.container as HTMLElement).querySelectorAll('span').forEach((element) => {
         this.links?.set(element.innerHTML.replaceAll(' ', '-'), element.parentElement as HTMLElement)
       })
+      this.onScroll()
     }
   },
   methods: {

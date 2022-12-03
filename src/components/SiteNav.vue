@@ -38,6 +38,8 @@
     padding: 0.25rem
     &:hover
       text-shadow: 0 0 0.5rem $brand-dark-b, 0 0 0.25rem $brand-bright-a
+    &:after
+      background-color: $brand-bright-a
 </style>
 
 <script lang='ts'>
