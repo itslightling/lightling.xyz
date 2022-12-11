@@ -53,8 +53,12 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent, ref, Ref } from 'vue'
-import { clamp } from '@/utilities/number'
+import {
+  Ref, defineComponent, ref,
+} from 'vue'
+import {
+  clamp,
+} from '@/utilities/number'
 
 export default defineComponent({
   props: {
@@ -69,11 +73,11 @@ export default defineComponent({
     scrollSelectorPath: {
       type: String,
       required: false,
-    }
+    },
   },
   setup () {
     const links: Ref<Map<string, HTMLElement> | undefined> = ref(undefined)
-      
+
     return {
       links,
     }
@@ -103,9 +107,9 @@ export default defineComponent({
         }))
         .map((element) => ({
           ratio: Math.abs(
-              (element.scrollAnchor as HTMLElement).getBoundingClientRect().top +
-              ((element.scrollAnchor as HTMLElement).getBoundingClientRect().height / 2)
-            ) / minDistance,
+            (element.scrollAnchor as HTMLElement).getBoundingClientRect().top +
+              ((element.scrollAnchor as HTMLElement).getBoundingClientRect().height / 2),
+          ) / minDistance,
           id: element.anchor.id,
         }))
       links.forEach((element, key) => {
@@ -116,7 +120,9 @@ export default defineComponent({
     onNavigate (id: string) {
       const route = `#${id.replaceAll(' ', '-')}`
       this.$router.push(route)
-      document.querySelector(`${route}${this.scrollSelectorPath}`)?.scrollIntoView({ behavior: 'smooth' })
+      document.querySelector(`${route}${this.scrollSelectorPath}`)?.scrollIntoView({
+        behavior: 'smooth',
+      })
     },
   },
 })

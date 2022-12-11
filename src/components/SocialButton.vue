@@ -45,10 +45,16 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent } from 'vue'
-import { directive } from 'vue-tippy'
+import {
+  defineComponent,
+} from 'vue'
+import {
+  directive,
+} from 'vue-tippy'
 
-import { SocialLink } from '@/types/SocialLink'
+import {
+  SocialLink,
+} from '@/types/SocialLink'
 
 export default defineComponent({
   directives: {
@@ -58,7 +64,7 @@ export default defineComponent({
     social: {
       type: Object as () => SocialLink,
       required: true,
-    }
-  }
+    },
+  },
 })
 </script>

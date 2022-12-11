@@ -43,10 +43,16 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent } from 'vue'
+import {
+  defineComponent,
+} from 'vue'
 
-import { BackgroundImage } from '@/types/BackgroundImage'
-import { GenericLink } from '@/types/SocialLink'
+import {
+  BackgroundImage,
+} from '@/types/BackgroundImage'
+import {
+  GenericLink,
+} from '@/types/SocialLink'
 
 export default defineComponent({
   props: {

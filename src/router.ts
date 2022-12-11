@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import {
+  RouteRecordRaw,
+  createRouter,
+  createWebHistory,
+} from 'vue-router'
 
 import Home from './views/Home/Home.vue'
 import Places from './views/Places/Places.vue'

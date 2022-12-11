@@ -61,10 +61,16 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent, ref } from 'vue'
+import {
+  defineComponent, ref,
+} from 'vue'
 
-import { Card } from '@/types/Card'
-import { fetchAndParseContent } from '@/utilities/fetcher'
+import {
+  Card,
+} from '@/types/Card'
+import {
+  fetchAndParseContent,
+} from '@/utilities/fetcher'
 import CardEmbed from '@/components/Card.vue'
 import ScrollAwarePageNav from '@/components/ScrollAwarePageNav.vue'
 
@@ -84,10 +90,10 @@ export default defineComponent({
   },
   mounted () {
     fetchAndParseContent('/content/info.yml')
-    .then((cards) => {
-      this.cards = cards as Card[]
-      this.nav = (cards as Card[]).map((card) => card.title)
-    })
+      .then((cards) => {
+        this.cards = cards as Card[]
+        this.nav = (cards as Card[]).map((card) => card.title)
+      })
   },
 })
 </script>

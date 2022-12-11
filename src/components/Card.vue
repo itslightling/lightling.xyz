@@ -115,9 +115,13 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent } from 'vue'
+import {
+  defineComponent,
+} from 'vue'
 
-import { Card } from '@/types/Card'
+import {
+  Card,
+} from '@/types/Card'
 import SocialButton from './SocialButton.vue'
 
 export default defineComponent({
@@ -125,7 +129,7 @@ export default defineComponent({
     card: {
       type: Object as () => Card,
       required: true,
-    }
+    },
   },
   components: {
     SocialButton,
@@ -133,7 +137,7 @@ export default defineComponent({
   methods: {
     swap () {
       requestAnimationFrame(() => {
-        const textContainer = this.$refs.textContainer as any
+        const textContainer = this.$refs.textContainer as HTMLElement
         if (textContainer.scrollHeight > textContainer.clientHeight) {
           textContainer.classList.add('scroller')
         } else {

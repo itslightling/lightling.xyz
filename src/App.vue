@@ -26,10 +26,16 @@ SiteNav(
 </style>
 
 <script lang='ts'>
-import { defineComponent, ref, Ref } from 'vue'
+import {
+  Ref, defineComponent, ref,
+} from 'vue'
 
-import { fetchAndParseContent } from '@/utilities/fetcher'
-import { BackgroundImage } from '@/types/BackgroundImage'
+import {
+  fetchAndParseContent,
+} from '@/utilities/fetcher'
+import {
+  BackgroundImage,
+} from '@/types/BackgroundImage'
 import SiteNav from '@/components/SiteNav.vue'
 
 export default defineComponent({
@@ -45,9 +51,9 @@ export default defineComponent({
   },
   mounted () {
     fetchAndParseContent('/content/site-config.yml')
-    .then((content) => {
-      this.headerImage = (content as any).logo
-    })
+      .then((content) => {
+        this.headerImage = (content as { logo: BackgroundImage }).logo
+      })
   },
 })
 </script>

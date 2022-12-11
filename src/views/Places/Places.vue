@@ -68,10 +68,16 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent, Ref, ref } from 'vue'
+import {
+  Ref, defineComponent, ref,
+} from 'vue'
 
-import { SocialLink } from '@/types/SocialLink'
-import { fetchAndParseContent } from '@/utilities/fetcher'
+import {
+  SocialLink,
+} from '@/types/SocialLink'
+import {
+  fetchAndParseContent,
+} from '@/utilities/fetcher'
 import SocialButton from '@/components/SocialButton.vue'
 
 export default defineComponent({
@@ -87,9 +93,9 @@ export default defineComponent({
   },
   mounted () {
     fetchAndParseContent('/content/places.yml')
-    .then((placesInfo) => {
-      this.places = (placesInfo as any).allPlaces
-    })
+      .then((placesInfo) => {
+        this.places = (placesInfo as { allPlaces: Array<SocialLink> }).allPlaces
+      })
   },
 })
 </script>

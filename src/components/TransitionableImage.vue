@@ -55,9 +55,13 @@
 </style>
 
 <script lang='ts'>
-import { defineComponent, ref } from 'vue'
+import {
+  defineComponent, ref,
+} from 'vue'
 
-import { BackgroundImage } from '@/types/BackgroundImage'
+import {
+  BackgroundImage,
+} from '@/types/BackgroundImage'
 
 export default defineComponent({
   setup () {

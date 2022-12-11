@@ -1,5 +1,9 @@
-import { BackgroundImage } from './BackgroundImage'
-import { SocialLink } from './SocialLink'
+import {
+  BackgroundImage,
+} from './BackgroundImage'
+import {
+  SocialLink,
+} from './SocialLink'
 
 export interface Card {
   wallpaper?: BackgroundImage
