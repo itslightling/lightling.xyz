@@ -56,7 +56,8 @@
 
 <script lang='ts'>
 import {
-  defineComponent, ref,
+  defineComponent,
+  ref,
 } from 'vue'
 
 import {

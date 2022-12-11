@@ -4,8 +4,8 @@ env:
   node: true
 extends:
   - eslint:recommended
-  - plugin:vue/vue3-essential
   - plugin:@typescript-eslint/recommended
+  - plugin:vue/vue3-essential
 overrides: []
 parser: 'vue-eslint-parser'
 parserOptions:
@@ -15,6 +15,7 @@ parserOptions:
 plugins:
   - vue
   - '@typescript-eslint'
+  - import-newlines
 rules:
   indent:
     - error
@@ -86,6 +87,10 @@ rules:
       before: true
       after: true
   'vue/multi-word-component-names': off
+  'import-newlines/enforce':
+    - error
+    -
+      items: 0
 ignorePatterns:
   - '*.json'
   - 'dist/*'
