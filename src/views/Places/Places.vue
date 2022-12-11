@@ -77,9 +77,11 @@ import {
 import {
   SocialLink,
 } from '@/types/SocialLink'
+
 import {
   fetchAndParseContent,
 } from '@/utilities/fetcher'
+
 import SocialButton from '@/components/SocialButton.vue'
 
 export default defineComponent({

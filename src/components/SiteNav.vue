@@ -7,7 +7,7 @@
     }`,
   )
   a(
-    v-for:='location in locations'
+    v-for:='location in locations',
     :href='`${location.url}`',
   ) {{ location.display }}
 </template>

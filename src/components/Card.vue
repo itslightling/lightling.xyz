@@ -20,7 +20,7 @@
     )
       SocialButton(
         v-for='social in card.social',
-        :social='social'
+        :social='social',
       )
   .preview
     .image(
@@ -99,6 +99,9 @@
     padding: 1rem
     grid-gap: 0.5rem
     .content
+      .text,
+      .social
+        border-radius: 0.5rem
       .social
         grid-gap: 0.25rem
 
@@ -112,6 +115,17 @@
       .social
         .social-button
           flex: 0 0 15vmin
+
+@media screen and (max-width: 480px)
+  .card
+    padding: 0.5rem
+    .content
+      .text
+        p
+          font-size: 0.9rem
+    .preview
+      .image
+        border-radius: 0.5rem
 </style>
 
 <script lang='ts'>
@@ -122,6 +136,7 @@ import {
 import {
   Card,
 } from '@/types/Card'
+
 import SocialButton from './SocialButton.vue'
 
 export default defineComponent({

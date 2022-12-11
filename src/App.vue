@@ -4,7 +4,7 @@ SiteNav(
   :locations=`[
     { url: '/', display: 'Home' },
     { url: '/places', display: 'Places' },
-  ]`
+  ]`,
 )
 #entry
   main
@@ -35,9 +35,11 @@ import {
 import {
   fetchAndParseContent,
 } from '@/utilities/fetcher'
+
 import {
   BackgroundImage,
 } from '@/types/BackgroundImage'
+
 import SiteNav from '@/components/SiteNav.vue'
 
 export default defineComponent({

@@ -10,14 +10,14 @@
     v-if='swapImage !== undefined',
   )
     .swapA(
-      ref='swapA'
+      ref='swapA',
       :style=`{
         backgroundImage: primaryImage?.src,
         backgroundPosition: primaryImage?.position,
       }`,
     )
     .swapB(
-      ref='swapB'
+      ref='swapB',
       :style=`{
         backgroundImage: swapImage?.src,
         backgroundPosition: swapImage?.position,
@@ -68,7 +68,7 @@ export default defineComponent({
   setup () {
     const primaryImage = ref({} as BackgroundImage | undefined)
     const swapImage = ref({} as BackgroundImage | undefined)
-    const transitionRef = ref(null as number | null)
+    const transitionRef = ref(null as number | null | ReturnType<typeof setTimeout>)
 
     return {
       primaryImage,

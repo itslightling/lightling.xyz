@@ -35,7 +35,7 @@
     .card
       margin-left: auto
       margin-right: 0
-      width: 75vmax
+      width: 75vw
 
 @media screen and (max-width: 860px)
   #main
@@ -58,6 +58,13 @@
       border-radius: 0.5rem
       align-self: stretch
       margin-bottom: 0.5rem
+
+@media screen and (max-width: 480px)
+  #main
+    padding-top: 25vmin
+    .card
+      width: calc(100vw - 2rem)
+      margin-top: 15vmin
 </style>
 
 <script lang='ts'>
@@ -69,9 +76,11 @@ import {
 import {
   Card,
 } from '@/types/Card'
+
 import {
   fetchAndParseContent,
 } from '@/utilities/fetcher'
+
 import CardEmbed from '@/components/Card.vue'
 import ScrollAwarePageNav from '@/components/ScrollAwarePageNav.vue'
 

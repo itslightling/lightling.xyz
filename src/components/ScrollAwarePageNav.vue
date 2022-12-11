@@ -8,7 +8,7 @@
     :key='`nav_${section}`',
     @click='() => onNavigate(section)',
     @keyup.enter='() => onNavigate(section)',
-    tabindex='0'
+    tabindex='0',
   )
     .circle
     span {{ section }}
@@ -58,6 +58,7 @@ import {
   ref,
   Ref,
 } from 'vue'
+
 import {
   clamp,
 } from '@/utilities/number'
