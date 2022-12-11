@@ -6,9 +6,9 @@
       backgroundPosition: image.position,
     }`,
   )
-  a(
+  RouterLink(
     v-for:='location in locations',
-    :href='`${location.url}`',
+    :to='`${location.url}`',
   ) {{ location.display }}
 </template>
 
