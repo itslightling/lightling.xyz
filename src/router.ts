@@ -1,6 +1,6 @@
 import {
   createRouter,
-  createWebHistory,
+  createWebHashHistory,
   RouteRecordRaw,
 } from 'vue-router'
 
@@ -19,6 +19,6 @@ export const SiteRoutes: RouteRecordRaw[] = [
 ]
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: SiteRoutes as RouteRecordRaw[],
 })
