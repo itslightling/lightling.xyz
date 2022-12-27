@@ -1,20 +1,21 @@
 <template lang='pug'>
 .card(
-  :style=`{
-    backgroundImage: card.wallpaper.src,
-    backgroundPosition: card.wallpaper.position,
-  }`,
   :id='card.title.replaceAll(" ", "-")',
 )
   .content
-    .text(
-      ref='textContainer',
-    )
-      h2 {{ card.title }}
-      p(
-        v-for='description in card.description',
-        v-html='description',
+    .preview
+      .image(
+        :style=`{
+          backgroundImage: card.featured.src,
+          backgroundPosition: card.featured.position,
+        }`,
       )
+      .title
+        h2 {{ card.title }}
+    p(
+      v-for='description in card.description',
+      v-html='description',
+    )
     .social(
       v-if='card.social',
     )
@@ -22,13 +23,6 @@
         v-for='social in card.social',
         :social='social',
       )
-  .preview
-    .image(
-      :style=`{
-        backgroundImage: card.featured.src,
-        backgroundPosition: card.featured.position,
-      }`,
-    )
 </template>
 
 <style lang='sass' scoped>
@@ -38,70 +32,73 @@
   position: relative
   padding: 2rem
   grid-gap: 2rem
-  background-color: #0005
+  background-color: $brand-bright-a
   background-attachment: fixed
   background-size: cover
-  border-radius: 2rem
-  box-shadow: 0 0.25rem 1rem 0 #0009
+  border: 1px dotted $brand-dark-a
+  border-left: none
+  border-right: none
   .content
-    display: flex
-    flex-direction: column
-    justify-content: space-between
     grid-gap: 1rem
     overflow: hidden
-    .text,
-    .social
-      background-color: #0009
-      backdrop-filter: blur(0.5rem)
-      border-radius: 1rem
-      padding: 1rem
-    .text
+    .preview
+      float: left
       position: relative
-      h2
-        color: $brand-light-b
-        text-transform: capitalize
-      p
-        color: $brand-bright-a
-        text-shadow: 0.05rem 0.05rem 0.05rem $brand-dark-b
-        font-size: 1.2rem
-        &:nth-last-child(1)
-          margin-bottom: 0
+      display: block
+      width: 25vmin
+      height: 25vmin
+      margin-right: 1rem
+      margin-bottom: 1rem
+      .image
+        width: 100%
+        height: 100%
+        border-radius: 1rem
+        position: absolute
+        background-size: cover
+        background-position: center center
+        background-repeat: no-repeat
+        background-color: $brand-dark-c
+        backdrop-filter: blur(0.5rem)
+      .title
+        position: absolute
+        display: flex
+        top: 0
+        left: 0
+        bottom: 0
+        right: 0
+        h2
+          margin: auto
+          padding: 0.5rem
+          font-size: 1.75rem
+          border-radius: 1rem
+          background-color: #0009
+          color: $brand-bright-a
+          width: calc(100% - 2rem)
+          word-wrap: break-word
+          text-align: center
+          backdrop-filter: blur(2px)
+    p
+      color: $brand-dark-b
+      margin-top: 0
+      font-size: 1.2rem
+      &:nth-last-child(1)
+        margin-bottom: 0
     .social
       display: flex
       flex-wrap: wrap
       grid-gap: 1rem
+      clear: both
+      background-color: $brand-dark-b
+      border-radius: 1rem
+      padding: 1rem
       .social-button
         flex: 0 0 10vmin
-  .preview
-    position: absolute
-    display: block
-    margin-left: auto
-    margin-right: auto
-    left: 0
-    right: 0
-    width: 25vmin
-    top: -12.5vmin
-    height: 25vmin
-    .image
-      border-radius: 2rem
-      display: block
-      width: 100%
-      height: 100%
-      background-size: cover
-      background-position: center center
-      background-repeat: no-repeat
-      background-color: #0009
-      backdrop-filter: blur(0.5rem)
-      box-shadow: 0 0.25rem 0.25rem 0 #0009
 
 @media screen and (max-width: 1023px)
   .card
     padding: 1rem
     grid-gap: 0.5rem
     .content
-      .text,
-      .social
-        border-radius: 0.5rem
       .social
         grid-gap: 0.25rem
 

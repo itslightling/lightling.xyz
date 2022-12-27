@@ -1,10 +1,5 @@
 <template lang='pug'>
 #main
-  ScrollAwarePageNav(
-    :sections='nav',
-    selector='.card',
-    scrollSelectorPath=' .image',
-  )
   CardEmbed(
     v-for='(card, i) in cards',
     :key='`card_${i}`',
@@ -16,43 +11,24 @@
 @import '@/styles/variables.sass'
 
 #main
+  margin-top: 4rem
   overflow-y: scroll
-  height: 100vh
-  .page-navigator
-    width: 2rem
-    position: absolute
-    top: 25vh
-    bottom: 25vh
-    left: 4vmax
+  height: calc(100vh - 4rem)
   .card
-    margin: 25vmin auto 0
+    margin: 0 auto 0
     width: 40rem
-    &:nth-last-child(1)
-      margin-bottom: 25vmin
 
 @media screen and (max-width: 1023px)
   #main
     .card
-      margin-left: auto
-      margin-right: 0
       width: 75vw
-
-@media screen and (max-width: 860px)
-  #main
-    .page-navigator
-      left: 0.5vmax
-      width: 1rem
-      font-size: 0.8rem
 
 @media screen and (max-width: 640px)
   #main
     display: grid
     grid-template-rows: min-content
     grid-gap: 0.5rem
-    .page-navigator
-      display: none
     .card
-      margin-right: auto
       width: calc(100vw - 3rem)
       height: unset
       border-radius: 0.5rem
@@ -61,10 +37,9 @@
 
 @media screen and (max-width: 480px)
   #main
-    padding-top: 25vmin
+    margin-top: 4.5rem
     .card
       width: calc(100vw - 2rem)
-      margin-top: 15vmin
 </style>
 
 <script lang='ts'>
