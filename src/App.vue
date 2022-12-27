@@ -57,6 +57,7 @@ export default defineComponent({
     fetchAndParseContent('/content/site-config.yml')
       .then((content) => {
         this.headerImage = (content as { logo: BackgroundImage }).logo
+        document.title = (content as { title: string }).title
       })
   },
 })
